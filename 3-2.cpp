@@ -154,6 +154,7 @@ int main()
 {
     string s = "()(";
     stack<char> st;
+    bool isBalanced = true;
     
     for(char c: s)
     {
@@ -161,18 +162,23 @@ int main()
         {
             st.push(c);
         }
-        else
+        else if(c==')')
         {
             if(st.empty())
             {
+                isBalanced=false;
                 break;
             }
+            else
+            {
+                st.pop();
+            }
             
-            st.pop();
+            
         }
     }
     
-    if(st.empty())
+    if(st.empty() && isBalanced)
     {
         cout << "Balanced";
     }
